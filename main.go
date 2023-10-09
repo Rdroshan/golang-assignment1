@@ -88,7 +88,7 @@ func findDegreesOfSeparationBFS(startActorURL, endActorURL string) (int, map[str
 func bfs(startActorURL, endActorURL string, visited map[string]bool, pathMap map[string]map[string]PathInfo) (int, []string, error) {
     queue := []string{startActorURL}
     degrees := 0
-
+    fmt.Printf("Finding connections")
     for len(queue) > 0 {
         levelSize := len(queue)
         degrees++
@@ -133,8 +133,10 @@ func bfs(startActorURL, endActorURL string, visited map[string]bool, pathMap map
                             castRole: movie.Role,
                         }
                         pathMap[castMember.URL][currentActorURL] = pathInfo
-                        fmt.Printf("cast actor %s\n", castMember.URL)
-                        printPathMap(pathMap[castMember.URL])
+                        fmt.Printf(".")
+                        // fmt.Printf("cast actor %s\n", castMember.URL)
+                        // printPathMap(pathMap[castMember.URL])
+
                         if castMember.URL == endActorURL {
                             return degrees, nil, nil
                         }
@@ -160,7 +162,7 @@ func printPathMap(p map[string]PathInfo) {
 func printOutput(startActorURL, endActorURL string, pathMap map[string]map[string]PathInfo, degrees int) ([]string, error) {
     var output []string
     currentActorURL := endActorURL
-
+    fmt.Printf("\n")
     for currentActorURL != startActorURL {
         actorToPathInfo := pathMap[currentActorURL]
 
