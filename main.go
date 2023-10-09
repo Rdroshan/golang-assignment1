@@ -138,6 +138,7 @@ func bfs(startActorURL, endActorURL string, visited map[string]bool, pathMap map
                         // printPathMap(pathMap[castMember.URL])
 
                         if castMember.URL == endActorURL {
+                            degree++
                             return degrees, nil, nil
                         }
                     }
